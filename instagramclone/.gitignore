@@ -3,7 +3,7 @@ pubspec.lock
 analysis_options.yaml
 android/
 windows/
-test/
+lib/test/
 
 # Miscellaneous
 *.class
