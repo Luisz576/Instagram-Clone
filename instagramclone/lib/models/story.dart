@@ -1,19 +1,19 @@
 import 'dart:collection';
 
 import 'package:instagramclone/models/story_post.dart';
+import 'package:instagramclone/models/user.dart';
 
 class Story{
   bool _deleted = false;
-  String _imageUrl;
 
   final List<StoryPost> _posts = [];
-  final String userId;
+  final User user;
 
   bool get deleted => _deleted;
-  String get imageUrl => _imageUrl;
+  String get userImageUrl => user.imageUrl;
   UnmodifiableListView<StoryPost> get posts => UnmodifiableListView(_posts);
 
-  Story(this.userId, this._imageUrl);
+  Story(this.user);
 
   delete(){
     _deleted = true;
@@ -21,7 +21,6 @@ class Story{
 
   update(Story story){
     if(story == this){
-      _imageUrl = story.imageUrl;
       _posts.clear();
       _posts.addAll(story.posts);
     }
@@ -30,12 +29,12 @@ class Story{
   @override
   bool operator ==(Object other){
     if(other is Story){
-      return userId == other.userId;
+      return user.id == other.user.id;
     }
     return false;
   }
 
-  StoryPost createPost(String imageUrl){
-    return StoryPost(this, imageUrl);
+  createStory(String imageUrl){
+    _posts.add(StoryPost(this, imageUrl));
   }
 }

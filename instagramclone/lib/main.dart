@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:instagramclone/models/story.dart';
+import 'package:instagramclone/repositories/theme_repository.dart';
 import 'package:instagramclone/screens/home_screen.dart';
-import 'package:instagramclone/widgets/story_user.dart';
+import 'package:instagramclone/services/database.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: StoryUser(
-      radius: 10,
-      story: Story(
-        "2324234324234",
-        "https://postmuseapp.com/wp-content/uploads/2018/12/HAPPY-BIRTHDAY-Instagram-Story-Template-LRmyYPOet5TjH3oQnP4-576x1024.png"
-      ),
-    ),
-  ));
-  // runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Database.init();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,10 +17,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Instagram',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: FutureBuilder(
+        future: Database.instance.loadConfig(),
+        builder: (context, snapshot){
+          if(snapshot.hasData){
+            return ChangeNotifierProvider(
+              create: (context) => ThemeRepository(snapshot.data!.isLight),
+              child: const HomeScreen(),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(color: Colors.blue),
+          );
+        },
+      ),
     );
   }
 }

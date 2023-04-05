@@ -16,7 +16,7 @@ class StoryUser extends StatelessWidget {
     return GestureDetector(
       onTap: _openStories,
       child: CircleAvatar(
-        backgroundImage: NetworkImage(story.imageUrl),
+        backgroundImage: NetworkImage(story.userImageUrl),
         foregroundColor: Colors.green,
         radius: radius,
       ),
