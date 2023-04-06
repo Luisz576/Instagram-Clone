@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/services/api.dart';
+import 'package:instagramclone/tabs/main_tab.dart';
 import 'package:instagramclone/widgets/insta_bottom_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           body: TabBarView(
             controller: controller,
             children: const [
-              Icon(Icons.directions_car),
+              MainTab(),
               Icon(Icons.not_interested_rounded),
               Icon(Icons.not_interested_rounded),
               Icon(Icons.not_interested_rounded),

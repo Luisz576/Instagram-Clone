@@ -20,5 +20,6 @@ class StoriesRepositories extends ChangeNotifier{
       }
       _stories.add(story);
     }
+    notifyListeners();
   }
 }
