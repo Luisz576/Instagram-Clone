@@ -4,7 +4,8 @@ import 'package:instagramclone/screens/login_screen.dart';
 
 class UserIcon extends StatelessWidget {
   final User? user;
-  const UserIcon({required this.user, super.key});
+  final double? size;
+  const UserIcon({required this.user, this.size, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class UserIcon extends StatelessWidget {
           "https://cdn.picpng.com/person/person-individually-alone-icon-49284.png"
           : user!.imageUrl
         ),
-        radius: 10,
+        radius: size ?? 10,
       ),
     );
   }

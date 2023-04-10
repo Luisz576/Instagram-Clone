@@ -14,7 +14,7 @@ class Database{
 
   late final ImagePicker imagePicker;
 
-  static init() async{
+  static init(){
     Hive
       ..init(path.current)
       ..registerAdapter(AppConfigAdapter());

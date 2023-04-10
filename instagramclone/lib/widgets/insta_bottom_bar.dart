@@ -23,14 +23,15 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
     return Consumer<ThemeRepository>(
       builder: (context, themeRepository, child){
         return BottomNavigationBar(
+          selectedLabelStyle: const TextStyle(fontSize: 0),
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: themeRepository.theme.primaryTextColor,),
+              icon: Icon(_currentIndex == 0 ? Icons.home : Icons.home_outlined, color: themeRepository.theme.primaryTextColor,),
               label: ""
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: themeRepository.theme.primaryTextColor,), 
+              icon: Icon(_currentIndex == 1 ? Icons.search : Icons.search_outlined, color: themeRepository.theme.primaryTextColor,), 
               label: ""
             ),
             BottomNavigationBarItem(
@@ -38,7 +39,7 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
               label: ""
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.video_library_outlined, color: themeRepository.theme.primaryTextColor,), 
+              icon: Icon(_currentIndex == 3 ? Icons.video_library : Icons.video_library_outlined, color: themeRepository.theme.primaryTextColor,), 
               label: ""
             ),
             BottomNavigationBarItem(

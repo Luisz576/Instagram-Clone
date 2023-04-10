@@ -4,10 +4,10 @@ import 'package:instagramclone/screens/home_screen.dart';
 import 'package:instagramclone/services/database.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Database.init();
+  Database.init();
 
   runApp(const MyApp());
 }
@@ -29,8 +29,11 @@ class MyApp extends StatelessWidget {
               child: const HomeScreen(),
             );
           }
-          return const Center(
-            child: CircularProgressIndicator(color: Colors.blue),
+          return Container(
+            color: Colors.white,
+            child: const Center(
+              child: CircularProgressIndicator(color: Colors.blue),
+            ),
           );
         },
       ),
