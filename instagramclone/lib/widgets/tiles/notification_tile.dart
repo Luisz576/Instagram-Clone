@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:instagramclone/models/app_theme.dart';
 import 'package:instagramclone/models/user_notification.dart';
 import 'package:instagramclone/widgets/follow_button.dart';
-import 'package:instagramclone/widgets/user_icon.dart';
+import 'package:instagramclone/widgets/user/user_icon.dart';
 
 class NotificationTile extends StatelessWidget {
   final AppTheme theme;

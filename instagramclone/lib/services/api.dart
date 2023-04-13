@@ -1,3 +1,4 @@
+import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/models/post.dart';
 import 'package:instagramclone/models/story.dart';
 import 'package:instagramclone/models/user.dart';
@@ -51,5 +52,15 @@ class Api{
   static Future<User> getUserById(String id) async{
     Future.delayed(const Duration(milliseconds: 500));
     return User(id, "insta", "https://wallpapercave.com/wp/wp4041550.jpg");
+  }
+
+  //MOCKADO
+  static Future<CompleteUserData> getCompleteUserData(String id) async{
+    User user = await getUserById(id);
+    Future.delayed(const Duration(milliseconds: 500));
+    return CompleteUserData.withUser(
+      user: user,
+      //TODO:
+    );
   }
 }

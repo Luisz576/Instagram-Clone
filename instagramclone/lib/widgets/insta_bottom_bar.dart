@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:instagramclone/functions/send_toast_message.dart';
 import 'package:instagramclone/repositories/theme_repository.dart';
 import 'package:instagramclone/repositories/user_repository.dart';
+import 'package:instagramclone/screens/login_screen.dart';
 import 'package:instagramclone/screens/photo_view_screen.dart';
 import 'package:instagramclone/services/database.dart';
-import 'package:instagramclone/widgets/user_icon.dart';
+import 'package:instagramclone/widgets/user/user_icon.dart';
 import 'package:provider/provider.dart';
 
 class InstaBottomBar extends StatefulWidget {
@@ -17,9 +18,44 @@ class InstaBottomBar extends StatefulWidget {
 
 class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
+  BuildContext? _context;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_listener);
+  }
+
+  _listener(){
+    if(widget.controller.index == 4){
+      UserRepository userRepository = context.read<UserRepository>();
+      if(userRepository.user == null){
+        if(_context != null){
+          Navigator.push(_context!, MaterialPageRoute(
+            builder: (context) => const LoginScreen(),
+          ));
+        }
+      }
+    }
+    _selectPage(widget.controller.index);
+  }
+
+  _selectPage(int index){
+    setState(() {
+      _currentIndex = index;
+      widget.controller.animateTo(index);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controller.removeListener(_listener);
+  }
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Consumer<ThemeRepository>(
       builder: (context, themeRepository, child){
         return BottomNavigationBar(
@@ -44,9 +80,7 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
             ),
             BottomNavigationBarItem(
               icon: Consumer<UserRepository>(
-                builder: (context, user, child){
-                  return UserIcon(user: user.user);
-                },
+                builder: (context, user, child) => UserIcon(user: user.user),
               ), 
               label: "",
             ),
@@ -58,7 +92,6 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
                   sendToastMessage(context, "Nenhuma imagem selecionada!");
                   return;
                 }
-                
                 Navigator.push(context, 
                   MaterialPageRoute(builder: (context) => PhotoViewScreen(photo: xfile.path))
                 );
@@ -67,10 +100,16 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
               });
               return;
             }
-            setState(() {
-              _currentIndex = index;
-              widget.controller.animateTo(index);
-            });
+            if(index == 4){
+              UserRepository userRepository = context.read<UserRepository>();
+              if(userRepository.user == null){
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ));
+                return;
+              }
+            }
+            _selectPage(index);
           },
           backgroundColor: themeRepository.theme.primaryColor,
         );
