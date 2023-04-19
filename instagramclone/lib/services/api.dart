@@ -60,7 +60,9 @@ class Api{
     Future.delayed(const Duration(milliseconds: 500));
     return CompleteUserData.withUser(
       user: user,
-      //TODO:
+      posts: 576,
+      followers: 1234567,
+      following: 1234
     );
   }
 }

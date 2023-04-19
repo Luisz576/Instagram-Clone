@@ -27,10 +27,13 @@ class _ProfileTabState extends State<ProfileTab> {
             if(snapshot.hasData){
               return ListView(
                 children: [
-                  ProfileInfo(
-                    userData: snapshot.data!,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: ProfileInfo(
+                      userData: snapshot.data!,
+                    ),
                   ),
-
+                  
                 ],
               );
             }

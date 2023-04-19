@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instagramclone/adapters/app_config_adapter.dart';
+import 'package:instagramclone/models/adapters/app_config_adapter.dart';
 import 'package:instagramclone/models/app_config.dart';
-import 'package:path/path.dart' as path;
 
 class Database{
   static late final Database instance;
@@ -14,10 +14,9 @@ class Database{
 
   late final ImagePicker imagePicker;
 
-  static init(){
-    Hive
-      ..init(path.current)
-      ..registerAdapter(AppConfigAdapter());
+  static init() async{
+    await Hive.initFlutter();
+    Hive.registerAdapter(AppConfigAdapter());
     instance = Database._();
   }
 
@@ -25,6 +24,9 @@ class Database{
     Hive.openBox<AppConfig>('configs').then((box){
       _hiveDb = box;
       _setuped = true;
+    }).onError((error, stackTrace){
+      print(error);
+      print("Erro ao inicializar banco de dados");
     });
     imagePicker = ImagePicker();
   }
@@ -35,7 +37,7 @@ class Database{
       return configs.isEmpty ? await _createConfig() : configs[0];
     }
     if(r == 10){
-      return AppConfig(true);
+      return AppConfig(isLight: true);
     }
     await Future.delayed(const Duration(milliseconds: 200));
     return loadConfig(r: r + 1);
@@ -47,7 +49,7 @@ class Database{
   }
 
   Future<AppConfig> _createConfig({AppConfig? defaultConfig}) async{
-    AppConfig config = defaultConfig ?? AppConfig(true);
+    AppConfig config = defaultConfig ?? AppConfig(isLight: true);
     await _hiveDb.add(config);
     return config;
   }

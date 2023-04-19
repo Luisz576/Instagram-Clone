@@ -38,52 +38,60 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         create: (context) => Api.auth.userRepository,
         child: DefaultTabController(
           length: 5,
-          child: Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Consumer<ThemeRepository>(
-                builder: (context, themeRepository, child) =>
-                  Image.network(themeRepository.theme.instagramLogoUrl, width: 100),
-              ),
-              actions: [
-                Consumer<ThemeRepository>(
-                  builder: (context, themeRepository, child) =>
-                    InstaIconAction(
-                      icon: Icons.favorite_outline,
-                      color: themeRepository.theme.primaryTextColor,
-                      size: 25,
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => NotificationsScreen(theme: themeRepository.theme,)
-                        ));
-                      },
-                    )
-                ),
-                Consumer<ThemeRepository>(
-                  builder: (context, themeRepository, child) =>
-                    InstaIconAction(
-                      icon: Icons.send_outlined,
-                      color: themeRepository.theme.primaryTextColor,
-                      size: 25
-                    )
-                ),
-              ],
-            ),
-            body: TabBarView(
-              controller: controller,
-              children: const [
-                MainTab(),
-                Icon(Icons.not_interested_rounded),
-                Icon(Icons.not_interested_rounded),
-                Icon(Icons.not_interested_rounded),
-                ProfileTab(),
-              ],
-            ),
-            bottomNavigationBar: InstaBottomBar(controller: controller),
-          ),
+          child: AppWithScaffold(controller: controller),
         ),
       ),
+    );
+  }
+}
+
+class AppWithScaffold extends StatelessWidget {
+  final TabController controller;
+  const AppWithScaffold({required this.controller, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeRepository = context.watch<ThemeRepository>();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Image.network(themeRepository.theme.instagramLogoUrl, width: 100),
+        actions: [
+          InstaIconAction(
+              icon: Icons.favorite_outline,
+              color: themeRepository.theme.primaryTextColor,
+              size: 25,
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => NotificationsScreen(theme: themeRepository.theme,)
+                ));
+              },
+            ),
+          InstaIconAction(
+            icon: Icons.send_outlined,
+            color: themeRepository.theme.primaryTextColor,
+            size: 25,
+            onPressed: (){
+              // JUST FOR TEST
+              print("Apenas para testes");
+              themeRepository.setLight(!themeRepository.isLight);
+            },
+          ),
+        ],
+      ),
+      body: TabBarView(
+        controller: controller,
+        children: const [
+          MainTab(),
+          Icon(Icons.not_interested_rounded),
+          Icon(Icons.not_interested_rounded),
+          Icon(Icons.not_interested_rounded),
+          ProfileTab(),
+        ],
+      ),
+      backgroundColor: themeRepository.theme.primaryColor,
+      bottomNavigationBar: InstaBottomBar(controller: controller),
     );
   }
 }

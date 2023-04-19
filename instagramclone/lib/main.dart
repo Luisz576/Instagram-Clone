@@ -4,10 +4,10 @@ import 'package:instagramclone/screens/home_screen.dart';
 import 'package:instagramclone/services/database.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Database.init();
+  await Database.init();
 
   runApp(const MyApp());
 }

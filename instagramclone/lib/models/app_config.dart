@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class AppConfig extends HiveObject{
   @HiveField(0)
-  final bool isLight;
+  bool isLight;
 
-  AppConfig(this.isLight);
+  AppConfig({required this.isLight});
 }

@@ -20,7 +20,7 @@ class ThemeRepository extends ChangeNotifier{
 
   setLight(bool isLight){
     _isLight = isLight;
-    Database.instance.changeConfig(AppConfig(isLight));
+    Database.instance.changeConfig(AppConfig(isLight: isLight));
     notifyListeners();
   }
 }

@@ -59,26 +59,32 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
     return Consumer<ThemeRepository>(
       builder: (context, themeRepository, child){
         return BottomNavigationBar(
+          backgroundColor: Colors.transparent,
           selectedLabelStyle: const TextStyle(fontSize: 0),
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
               icon: Icon(_currentIndex == 0 ? Icons.home : Icons.home_outlined, color: themeRepository.theme.primaryTextColor,),
               label: ""
             ),
             BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
               icon: Icon(_currentIndex == 1 ? Icons.search : Icons.search_outlined, color: themeRepository.theme.primaryTextColor,), 
               label: ""
             ),
             BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
               icon: Icon(Icons.add_box_outlined, color: themeRepository.theme.primaryTextColor,), 
               label: ""
             ),
             BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
               icon: Icon(_currentIndex == 3 ? Icons.video_library : Icons.video_library_outlined, color: themeRepository.theme.primaryTextColor,), 
               label: ""
             ),
             BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
               icon: Consumer<UserRepository>(
                 builder: (context, user, child) => UserIcon(user: user.user),
               ), 
@@ -111,7 +117,6 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
             }
             _selectPage(index);
           },
-          backgroundColor: themeRepository.theme.primaryColor,
         );
       }
     );

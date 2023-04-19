@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagramclone/extensions/post_number_formater.dart';
 import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/widgets/tiles/profile_info_tile.dart';
 import 'package:instagramclone/widgets/user/user_icon.dart';
@@ -17,22 +18,21 @@ class ProfileInfo extends StatelessWidget {
               user: userData,
               size: 40,
             ),
-            //TODO:
-            // const SizedBox(width: 40,),
-            // ProfileInfoTile(
-            //   title: "132",
-            //   subtitle: "Posts",
-            // ),
-            // const SizedBox(width: 40,),
-            // ProfileInfoTile(
-            //   title: "132",
-            //   subtitle: "Posts",
-            // ),
-            // const SizedBox(width: 40,),
-            // ProfileInfoTile(
-            //   title: "132",
-            //   subtitle: "Posts",
-            // ),
+            const SizedBox(width: 35,),
+            ProfileInfoTile(
+              title: userData.posts.postNumberFormat(),
+              subtitle: "Posts",
+            ),
+            const SizedBox(width: 35,),
+            ProfileInfoTile(
+              title: userData.followers.postNumberFormat(),
+              subtitle: "Followers",
+            ),
+            const SizedBox(width: 35,),
+            ProfileInfoTile(
+              title: userData.following.postNumberFormat(),
+              subtitle: "Following",
+            ),
           ],
         ),
       ],
