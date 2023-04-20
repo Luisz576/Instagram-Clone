@@ -62,7 +62,9 @@ class Api{
       user: user,
       posts: 576,
       followers: 1234567,
-      following: 1234
+      following: 1234,
+      profession: "Digital creator",
+      description: "Hello World!\nMy description"
     );
   }
 }

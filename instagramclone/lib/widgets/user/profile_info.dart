@@ -35,6 +35,9 @@ class ProfileInfo extends StatelessWidget {
             ),
           ],
         ),
+        Text(userData.username),
+        Text(userData.profession),
+        Text(userData.description),
       ],
     );
   }
