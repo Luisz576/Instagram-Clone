@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/functions/send_toast_message.dart';
+import 'package:instagramclone/models/app_theme.dart';
 import 'package:instagramclone/repositories/theme_repository.dart';
 import 'package:instagramclone/repositories/user_repository.dart';
 import 'package:instagramclone/screens/login_screen.dart';
@@ -19,6 +20,7 @@ class InstaBottomBar extends StatefulWidget {
 class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   BuildContext? _context;
+  AppTheme? _theme;
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
       if(userRepository.user == null){
         if(_context != null){
           Navigator.push(_context!, MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
+            builder: (context) => LoginScreen(theme: _theme!),
           ));
         }
       }
@@ -58,6 +60,7 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
     _context = context;
     return Consumer<ThemeRepository>(
       builder: (context, themeRepository, child){
+        _theme = themeRepository.theme;
         return BottomNavigationBar(
           backgroundColor: Colors.transparent,
           selectedLabelStyle: const TextStyle(fontSize: 0),
@@ -95,14 +98,14 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
             if(index == 2){
               Database.instance.pickImage().then((xfile) async{
                 if(xfile == null){
-                  sendToastMessage(context, "Nenhuma imagem selecionada!");
+                  sendToastMessage(context, "Nenhuma imagem selecionada!", color: themeRepository.theme.accentColor);
                   return;
                 }
                 Navigator.push(context, 
                   MaterialPageRoute(builder: (context) => PhotoViewScreen(photo: xfile.path))
                 );
               }).onError((_, __){
-                sendToastMessage(context, "Erro ao carregar imagem!");
+                sendToastMessage(context, "Erro ao carregar imagem!", color: themeRepository.theme.accentColor);
               });
               return;
             }
@@ -110,7 +113,7 @@ class _InstaBottomBarState extends State<InstaBottomBar> with SingleTickerProvid
               UserRepository userRepository = context.read<UserRepository>();
               if(userRepository.user == null){
                 Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
+                  builder: (context) => LoginScreen(theme: themeRepository.theme,),
                 ));
                 return;
               }

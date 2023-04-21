@@ -8,6 +8,8 @@ class AppThemeBuilder{
       primaryTextColor: Colors.black,
       secundaryColor: Colors.red[600]!,
       accentColor: Colors.blue,
+      gridColor: Colors.grey,
+      secundaryTextColor: Colors.grey,
       instagramLogoUrl: "https://logosmarcas.net/wp-content/uploads/2020/04/Instagram-Logo.png"
     );
   }
@@ -18,6 +20,8 @@ class AppThemeBuilder{
       primaryTextColor: Colors.white,
       secundaryColor: Colors.red[600]!,
       accentColor: Colors.blue,
+      gridColor: Colors.grey,
+      secundaryTextColor: Colors.grey,
       instagramLogoUrl: "https://www.pngkey.com/png/full/1-13459_instagram-font-logo-white-png-instagram-white-text.png"
     );
   }

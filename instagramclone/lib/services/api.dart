@@ -1,6 +1,7 @@
 import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/models/post.dart';
 import 'package:instagramclone/models/story.dart';
+import 'package:instagramclone/models/story_post.dart';
 import 'package:instagramclone/models/user.dart';
 import 'package:instagramclone/services/auth.dart';
 
@@ -64,7 +65,73 @@ class Api{
       followers: 1234567,
       following: 1234,
       profession: "Digital creator",
-      description: "Hello World!\nMy description"
+      description: "Hello World! This is my description!\nMy description <HERE>!",
+      story: Story.withPosts(
+        user: user,
+        stories: [
+          "https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg",
+          "https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg",
+          "https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg",
+        ]
+      ),
+      userPosts: [
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+        Post(user,
+          "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
+          "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        ),
+      ]
     );
   }
 }

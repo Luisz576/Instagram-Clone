@@ -28,6 +28,7 @@ class NotificationsScreen extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: theme.primaryColor,
       body: NotificationsTab(theme: theme,),
     );
   }

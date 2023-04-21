@@ -82,12 +82,12 @@ class AppWithScaffold extends StatelessWidget {
       ),
       body: TabBarView(
         controller: controller,
-        children: const [
-          MainTab(),
-          Icon(Icons.not_interested_rounded),
-          Icon(Icons.not_interested_rounded),
-          Icon(Icons.not_interested_rounded),
-          ProfileTab(),
+        children: [
+          const MainTab(),
+          Icon(Icons.not_interested_rounded, color: themeRepository.theme.primaryTextColor,),
+          Icon(Icons.not_interested_rounded, color: themeRepository.theme.primaryTextColor,),
+          Icon(Icons.not_interested_rounded, color: themeRepository.theme.primaryTextColor,),
+          const ProfileTab(),
         ],
       ),
       backgroundColor: themeRepository.theme.primaryColor,

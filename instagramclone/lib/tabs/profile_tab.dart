@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/repositories/user_repository.dart';
 import 'package:instagramclone/services/api.dart';
+import 'package:instagramclone/widgets/tiles/post_tile.dart';
+import 'package:instagramclone/widgets/tiles/story_tile.dart';
 import 'package:instagramclone/widgets/user/profile_info.dart';
 import 'package:provider/provider.dart';
 
@@ -25,15 +28,54 @@ class _ProfileTabState extends State<ProfileTab> {
           future: Api.getCompleteUserData(userRepository.user!.id),
           builder: (context, snapshot){
             if(snapshot.hasData){
-              return ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    child: ProfileInfo(
-                      userData: snapshot.data!,
+              CompleteUserData data = snapshot.data!;
+              return CustomScrollView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: ProfileInfo(
+                        userData: data,
+                      ),
                     ),
                   ),
-                  
+                  SliverPadding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    sliver: SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 50,
+                        child: ListView.builder(
+                          itemCount: 7,
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            //MOCKADO
+                            child: StoryTile(
+                              story: index == 0 ? data.story.posts[0] : null,
+                              radius: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => PostTile(post: data.userPosts[index]),
+                        childCount: data.userPosts.length,
+                      ),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisSpacing: 3,
+                        crossAxisSpacing: 3
+                      ),
+                    ),
+                  )
                 ],
               );
             }
