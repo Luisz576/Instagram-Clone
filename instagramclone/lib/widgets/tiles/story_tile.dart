@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instagramclone/models/story.dart';
 import 'package:instagramclone/models/story_post.dart';
 import 'package:instagramclone/repositories/theme_repository.dart';
 import 'package:provider/provider.dart';

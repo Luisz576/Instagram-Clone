@@ -1,7 +1,6 @@
 import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/models/post.dart';
 import 'package:instagramclone/models/story.dart';
-import 'package:instagramclone/models/story_post.dart';
 import 'package:instagramclone/models/user.dart';
 import 'package:instagramclone/services/auth.dart';
 
