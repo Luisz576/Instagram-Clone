@@ -10,6 +10,7 @@ class Story{
   final User user;
 
   bool get deleted => _deleted;
+  bool get isEmpty => _posts.isEmpty;
   String get userImageUrl => user.imageUrl;
   UnmodifiableListView<StoryPost> get posts => UnmodifiableListView(_posts);
   int get length => _posts.length;

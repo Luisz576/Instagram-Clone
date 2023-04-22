@@ -54,7 +54,7 @@ class _ProfileTabState extends State<ProfileTab> {
                             padding: const EdgeInsets.only(left: 10),
                             //MOCKADO
                             child: StoryTile(
-                              story: index == 0 ? data.story.posts[0] : null,
+                              story: index == 0 ? data.story : null,
                               radius: 30,
                             ),
                           ),

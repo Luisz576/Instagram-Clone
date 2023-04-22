@@ -3,23 +3,18 @@ import 'package:instagramclone/models/story.dart';
 
 class StoryUser extends StatelessWidget {
   final Story story;
+  final Color? backgroundColor;
+  final ImageProvider? forcedImage;
   final double? radius;
 
-  const StoryUser({required this.story, this.radius, super.key});
-
-  _openStories(){
-    //TODO:
-  }
+  const StoryUser({required this.story, this.radius, this.backgroundColor, this.forcedImage, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _openStories,
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(story.userImageUrl),
-        foregroundColor: Colors.green,
-        radius: radius,
-      ),
+    return CircleAvatar(
+      backgroundColor: backgroundColor,
+      backgroundImage: forcedImage ?? NetworkImage(story.userImageUrl),
+      radius: radius,
     );
   }
 }

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:instagramclone/models/story_post.dart';
+import 'package:instagramclone/models/story.dart';
 import 'package:instagramclone/repositories/theme_repository.dart';
+import 'package:instagramclone/widgets/user/story_user.dart';
 import 'package:provider/provider.dart';
 
 class StoryTile extends StatelessWidget {
-  final StoryPost? story;
+  final Story? story;
   final double? radius;
   final Function()? onTap;
   const StoryTile({required this.story, this.radius, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
-    if(story == null){
+    if(story == null || story!.isEmpty){
       final ThemeRepository themeRepository = context.watch<ThemeRepository>();
       return CircleAvatar(
           backgroundColor: themeRepository.theme.gridColor,
@@ -21,9 +22,10 @@ class StoryTile extends StatelessWidget {
     }
     return GestureDetector(
       onTap: onTap,
-      child: CircleAvatar(
+      child: StoryUser(
+        story: story!,
         backgroundColor: Colors.transparent,
-        backgroundImage: NetworkImage(story!.imageUrl),
+        forcedImage: NetworkImage(story!.posts[story!.posts.length - 1].imageUrl),
         radius: radius,
       ),
     );
