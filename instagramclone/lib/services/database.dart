@@ -24,8 +24,7 @@ class Database{
       _hiveDb = box;
       _setuped = true;
     }).onError((error, stackTrace){
-      print(error);
-      print("Erro ao inicializar banco de dados");
+      print("Erro ao inicializar banco de dados!\n$error");
     });
     imagePicker = ImagePicker();
   }

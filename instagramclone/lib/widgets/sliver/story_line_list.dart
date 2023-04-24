@@ -6,8 +6,8 @@ import 'package:instagramclone/services/api.dart';
 import 'package:instagramclone/widgets/tiles/story_tile.dart';
 import 'package:provider/provider.dart';
 
-class SliverStoryLineList extends StatelessWidget {
-  const SliverStoryLineList({super.key});
+class StoryLineList extends StatelessWidget {
+  const StoryLineList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +18,23 @@ class SliverStoryLineList extends StatelessWidget {
           if(snapshot.hasData){
             List<Story> data = snapshot.data!;
             return ListView.builder(
+              padding: const EdgeInsets.only(right: 20),
               itemCount: data.length,
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => StoryTile(
-                story: data[index],
-                onTap: () => openStory(context, data[index]),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: StoryTile(
+                  story: data[index],
+                  radius: 30,
+                  onTap: () => openStory(context, data, startAt: index),
+                  showUsername: true,
+                ),
               ),
             );
           }
           return CircularProgressIndicator(
-            color: themeRepository.theme.primaryTextColor
+            color: themeRepository.theme.primaryTextColor,
           );
         },
       ),

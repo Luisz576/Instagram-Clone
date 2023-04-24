@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:instagramclone/models/complete_user_data.dart';
 import 'package:instagramclone/models/post.dart';
 import 'package:instagramclone/models/story.dart';
@@ -41,17 +43,18 @@ class Api{
       s2 = Story(await getUserById("5e345yy54y")),
       s3 = Story(await getUserById("t3t43tt4th"));
     s1.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
-    s3.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
-    s3.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
+    s2.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
     s2.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
     s3.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
-    return [s1, s2, s3];
+    s3.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
+    s3.createStory("https://buffer.com/resources/content/images/resources/wp-content/uploads/2019/12/luke-chesser-B_oL3jEt5L4-unsplash.jpg");
+    return [s1, s2, s3, s1, s2, s3, s1, s2, s3, s1, s2, s3];
   }
 
   // MOCKADO
   static Future<User> getUserById(String id) async{
     Future.delayed(const Duration(milliseconds: 500));
-    return User(id, "insta", "https://wallpapercave.com/wp/wp4041550.jpg");
+    return User(id, ["insta", "insta2", "my_insta", "this_insta", "insta_123"][Random().nextInt(5)], "https://wallpapercave.com/wp/wp4041550.jpg");
   }
 
   //MOCKADO

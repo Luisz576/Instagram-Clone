@@ -31,18 +31,10 @@ class Story{
   }
 
   update(Story story){
-    if(story == this){
+    if(story.user.id == user.id){
       _posts.clear();
       _posts.addAll(story.posts);
     }
-  }
-
-  @override
-  bool operator ==(Object other){
-    if(other is Story){
-      return user.id == other.user.id;
-    }
-    return false;
   }
 
   createStory(String imageUrl){
