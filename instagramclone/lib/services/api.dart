@@ -10,28 +10,28 @@ class Api{
   static final Authentication auth = Authentication();
 
   // MOCKADO
-  static Future<List<Post>> loadPosts() async{
+  static Future<List<Post>> loadPosts(int page) async{
     Future.delayed(const Duration(milliseconds: 500));
     return [
       Post(await getUserById("5e345yy54y"),
         "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
-        "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        "@insta Postagem teste para o instagramn clone, essa mensagem não possui conteudo real, apenas um dado mockado para demonstração! ❤️ #insta #clone #teste #dart #flutter"
       ),
       Post(await getUserById("45hg45g454"),
         "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
-        "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        "@insta Postagem teste para o instagramn clone, essa mensagem não possui conteudo real, apenas um dado mockado para demonstração! 🎈 #insta #clone #teste #dart #flutter"
       ),
       Post(await getUserById("t3t43tt4th"),
         "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
-        "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        "@insta Postagem teste para o instagramn clone, essa mensagem não possui conteudo real, apenas um dado mockado para demonstração! ☀️ #insta #clone #teste #dart #flutter"
       ),
       Post(await getUserById("45hg45g454"),
         "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
-        "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        "@insta Postagem teste para o instagramn clone, essa mensagem não possui conteudo real, apenas um dado mockado para demonstração! 🔥 #insta #clone #teste #dart #flutter"
       ),
       Post(await getUserById("5e345yy54y"),
         "https://image.freepik.com/vecteurs-libre/modele-post-instagram-notifications_23-2147815662.jpg",
-        "@insta Postagem teste #insta #clone #teste #dart #flutter"
+        "@insta Postagem teste para o instagramn clone, essa mensagem não possui conteudo real, apenas um dado mockado para demonstração! 🎉 #insta #clone #teste #dart #flutter"
       ),
     ];
   }
